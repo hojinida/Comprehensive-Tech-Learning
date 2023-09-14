@@ -1,0 +1,44 @@
+<included>
+
+    <!-- LOCAL 환경용 -->
+    <appender name="SLACK_LOCAL" class="com.demo.initial.log.SlackAppender">
+        <colorCoding>true</colorCoding>
+    </appender>
+
+    <appender name="ASYNC_SLACK_LOCAL" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SLACK_LOCAL" />
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <!-- PROD 환경용 -->
+    <appender name="SLACK_PROD" class="com.demo.initial.log.SlackAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>[PROD] [%-5level] [%thread] [%X{traceId}] [%logger{0}:%line] - %message %n</pattern>
+        </layout>
+        <colorCoding>true</colorCoding>
+    </appender>
+
+    <appender name="ASYNC_SLACK_PROD" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SLACK_PROD" />
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <!-- DEV 환경용 -->
+    <appender name="SLACK_DEV" class="com.demo.initial.log.SlackAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>[DEV] [%-5level] [%thread] [%X{traceId}] [%logger{0}:%line] - %message %n</pattern>
+        </layout>
+        <colorCoding>true</colorCoding>
+    </appender>
+
+    <appender name="ASYNC_SLACK_DEV" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="SLACK_DEV" />
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+</included>

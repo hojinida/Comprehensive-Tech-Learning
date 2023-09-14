@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="60 seconds">
+    <!-- 기본 Spring Boot 설정 포함 -->
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="appenders/async-file-appender-error.xml"/>
+    <include resource="appenders/slack-appender.xml"/>
+    <include resource="appenders/file-appender.xml"/>
+
+    <!-- 상수 설정 -->
+    <timestamp key="DATE_FORMAT" datePattern="yyyy-MM-dd"/>
+    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}}/spring.log}"/>
+    <property name="CONSOLE_LOG_PATTERN" value="%highlight([%-5level]) %d{yyyy-MM-dd HH:mm:ss.SSS,Asia/Seoul} %cyan([%thread]) %magenta([%logger{0}:%line]) - %message %n"/>
+    <property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS,Asia/Seoul} | ${LOG_LEVEL_PATTERN:-%5p} | %thread | %X{traceId} | [%logger{0}:%line] - %message %n"/>
+
+    <!-- 프로필 별 설정 -->
+    <springProfile name="local">
+        <property name="FILE_PATH" value="${user.home}/logs/local"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE_APPENDER"/>
+
+            <appender-ref ref="ASYNC_FILE_APPENDER_ERROR">
+                <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                    <level>ERROR</level>
+                    <onMatch>ACCEPT</onMatch>
+                    <onMismatch>DENY</onMismatch>
+                </filter>
+            </appender-ref>
+            <appender-ref ref="ASYNC_SLACK_LOCAL">
+                <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                    <level>ERROR</level>
+                    <onMatch>ACCEPT</onMatch>
+                    <onMismatch>DENY</onMismatch>
+                </filter>
+            </appender-ref>
+        </root>
+    </springProfile>
+
+
+    <springProfile name="dev">
+        <property name="FILE_PATH" value="${user.home}/logs/dev"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE_APPENDER"/>
+
+            <appender-ref ref="ASYNC_FILE_APPENDER_ERROR">
+                <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                    <level>ERROR</level>
+                    <onMatch>ACCEPT</onMatch>
+                    <onMismatch>DENY</onMismatch>
+                </filter>
+            </appender-ref>
+            <appender-ref ref="ASYNC_SLACK_DEV">
+                <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                    <level>ERROR</level>
+                    <onMatch>ACCEPT</onMatch>
+                    <onMismatch>DENY</onMismatch>
+                </filter>
+            </appender-ref>
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <property name="FILE_PATH" value="${user.home}/logs/prod"/>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE_APPENDER"/>
+
+            <appender-ref ref="ASYNC_FILE_APPENDER_ERROR">
+                <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                    <level>ERROR</level>
+                    <onMatch>ACCEPT</onMatch>
+                    <onMismatch>DENY</onMismatch>
+                </filter>
+            </appender-ref>
+            <appender-ref ref="ASYNC_SLACK_PROD">
+                <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                    <level>ERROR</level>
+                    <onMatch>ACCEPT</onMatch>
+                    <onMismatch>DENY</onMismatch>
+                </filter>
+            </appender-ref>
+        </root>
+    </springProfile>
+</configuration>

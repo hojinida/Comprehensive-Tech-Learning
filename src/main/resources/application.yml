@@ -1,0 +1,26 @@
+server:
+  port: 8080
+  #servlet:
+    #context-path: /api
+
+spring:
+  profiles:
+    active: local, oauth
+  datasource:
+    hikari:
+      minimum-idle: 22
+      maximum-pool-size: 22
+  thymeleaf:
+    check-template-location: false
+
+jwt:
+  secret: ENC(87UFihwv7aorny2UGhp/iMmusKqU6+bItF8UNJSSVngmveTkWfkJqhapw117D5gEDhQfNzvvka8T+/o5p25pxw==)
+  expiration-period: ENC(j59X/L1t88ZGXNw4j+MG2A==)
+  header: ENC(yABURq8/E3eYxWJc4H00oMjI+qZjlM5+)
+  prefix: ENC(nwMo4OSqyA4ZXYxz9UyMNw==)
+
+jasypt:
+  encryptor:
+    bean: jasyptEncryptor
+    password: ${ENCRYPT_KEY}
+
