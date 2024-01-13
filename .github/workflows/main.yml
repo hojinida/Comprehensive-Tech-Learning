@@ -2,16 +2,16 @@ name: backend CI Config
 
 on:
   push:
-    paths: 'initial/**'
+    paths: '/'
   pull_request:
     branches:
       - develop
       - main
-    paths: 'initial/**'
+    paths: '/'
 
 defaults:
   run:
-    working-directory: initial/
+    working-directory: /
 
 permissions:
   pull-requests: write
