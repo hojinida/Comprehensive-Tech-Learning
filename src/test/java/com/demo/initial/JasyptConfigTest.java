@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.junit.jupiter.api.Test;
 
-public class JasyptConfigTest {
+class JasyptConfigTest {
     @Test
     void jasypt(){
         String url = "6rr4zgVeU7XjCtiD8x_K";
