@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring" )
 public interface DtoMapper {
+    
     MemberCreateResponseDto toMemberCreateResponseDto(Member member);
     SignInResponseDto toSignInResponseDto(String token);
 }
