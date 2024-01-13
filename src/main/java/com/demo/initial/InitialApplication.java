@@ -13,7 +13,6 @@ public class InitialApplication {
 	public static void main(String[] args) {
 		TimeZone.setDefault(TimeZone.getTimeZone("KST"));
 		SpringApplication.run(InitialApplication.class, args);
-		
 	}
 
 }
