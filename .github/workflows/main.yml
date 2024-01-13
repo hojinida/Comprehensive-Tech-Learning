@@ -2,12 +2,13 @@ name: backend CI Config
 
 on:
   push:
-    paths: '/'
+    branches:
+      - develop
+      - main
   pull_request:
     branches:
       - develop
       - main
-    paths: '/'
 
 defaults:
   run:
