@@ -10,10 +10,6 @@ on:
       - develop
       - main
 
-defaults:
-  run:
-    working-directory: /
-
 permissions:
   pull-requests: write
   checks: write
