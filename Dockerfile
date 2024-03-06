@@ -1,5 +1,7 @@
 # 빌드 스테이지
 FROM openjdk:17-alpine as build
+RUN apk add --no-cache nodejs npm
+
 # 프로젝트 디렉토리 설정
 WORKDIR /app
 
