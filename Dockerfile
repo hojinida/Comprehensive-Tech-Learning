@@ -14,7 +14,7 @@ RUN ./gradlew --no-daemon dependencies
 
 # 프로젝트 소스 복사 및 빌드, 테스트 스킵
 COPY src src
-RUN ./gradlew --no-daemon build -x test
+RUN ./gradlew --no-daemon build -x test --stacktrace
 
 # 실행 스테이지, JRE slim 버전 사용
 FROM openjdk:17-alpine
