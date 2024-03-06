@@ -17,7 +17,7 @@ COPY src src
 RUN ./gradlew --no-daemon build -x test
 
 # 실행 스테이지, JRE slim 버전 사용
-FROM openjdk:17-jre-slim
+FROM openjdk:17-alpine
 # 애플리케이션 파일을 컨테이너에 복사
 COPY --from=build ./build/libs/initial-0.0.1-SNAPSHOT-plain.jar /app.jar
 
