@@ -41,5 +41,4 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         out.print(jsonResponse);
         out.flush();
     }
-
 }
