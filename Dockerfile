@@ -1,6 +1,9 @@
 # 빌드 스테이지
 FROM openjdk:17-alpine as build
 RUN apk add --no-cache nodejs npm
+RUN $JAVA_HOME/bin/jlink \
+    --add-modules java.base,java.sql,java.logging,java.desktop \
+    --output /jre
 
 # 프로젝트 디렉토리 설정
 WORKDIR /app
@@ -19,10 +22,7 @@ COPY src src
 RUN ./gradlew --no-daemon build -x test
 
 
-# 실행 스테이지
-FROM openjdk:17-alpine
-# 애플리케이션 파일을 컨테이너에 복사
-COPY --from=build /app/build/libs/initial-0.0.1-SNAPSHOT-plain.jar /app.jar
-
-# 컨테이너 시작 시 실행할 명령어
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM alpine
+COPY --from=build /jre /opt/jre
+COPY --from=build /app/build/libs/my-application.jar /app.jar
+ENTRYPOINT ["/opt/jre/bin/java", "-jar", "/app.jar"]
