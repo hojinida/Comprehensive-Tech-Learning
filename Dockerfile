@@ -6,8 +6,8 @@ WORKDIR /app
 # Gradle wrapper 및 프로젝트 정의 파일 복사
 COPY gradlew .
 COPY gradle gradle
-COPY build.gradle.kts .
-COPY settings.gradle.kts .
+COPY build.gradle .
+COPY settings.gradle .
 
 # 프로젝트 의존성 캐싱을 위해 먼저 의존성 다운로드 실행
 RUN ./gradlew --no-daemon dependencies
