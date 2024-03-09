@@ -4,12 +4,12 @@ import org.assertj.core.api.Assertions;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.junit.jupiter.api.Test;
 
-public class JasyptConfigTest {
+class JasyptConfigTest {
     @Test
     void jasypt(){
-        String url = "6rr4zgVeU7XjCtiD8x_K";
-        String username = "60";
-        String password = "Janghojin00@";
+        String url = "withyoubucket";
+        String username = "2rQeLLRMYpBaUsdmi9tSATSBrImO4s2ZLL41611j";
+        String password = "WithYou.app";
 
         String encryptUrl = jasyptEncrypt(url);
         String encryptUsername = jasyptEncrypt(username);
